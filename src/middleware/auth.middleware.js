@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const auth = (roles = []) => {
   return (req, res, next) => {
-    const token = req.header("Authorization");
+    const token = req.header("Authorization")?.split(" ")[1] ?? null;
     if (!token) {
       return res.status(401).json({ message: "Access Denied" });
     }

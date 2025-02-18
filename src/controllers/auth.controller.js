@@ -43,7 +43,7 @@ export const loginUser = async (req, res) => {
 export const checkLoginStatus = async (req, res) => {
   try {
     // Get token from Authorization header
-    const token = req.header("Authorization")?.split(" ")[1];
+    const token = req.header("Authorization")?.split(" ")[1] ?? null;
     if (!token) {
       return res
         .status(401)
