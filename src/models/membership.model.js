@@ -13,7 +13,7 @@ const membershipSchema = new mongoose.Schema(
       required: true,
     },
     membership_type: {
-      type: Number,
+      type: String,
       enum: ["monthly", "annual"],
       required: true,
     },
