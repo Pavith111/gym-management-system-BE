@@ -1,5 +1,6 @@
 import express from 'express';
 import connectDB from './src/config/db.js';
+import cors from 'cors';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -14,6 +15,13 @@ import reviewRoutes from './src/routes/review.route.js';
 connectDB();
 
 const app = express();
+
+// CORS configuration
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
 
 //middleware
 app.use(express.json());
