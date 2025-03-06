@@ -18,6 +18,16 @@ const reviewSchema = new mongoose.Schema(
       min: 1,
       max: 5,
     },
+    review: {
+      type: String,
+      required: true,
+      minLength: 1,
+      maxLength: 500,
+    },
+    avatar: {
+      type: String,
+      default: "/images/reviews/avatar1.jpg",
+    },
   },
   { timestamps: true }
 );

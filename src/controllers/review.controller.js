@@ -9,9 +9,32 @@ export const createReview = async (req, res) => {
   }
 };
 
+export const getAllReviews = async (req, res) => {
+  try {
+    const reviews = await Review.find()
+      .populate("user_id", "name email")
+      .populate("gym", "name location");
+
+    res.status(200).json({
+      success: true,
+      count: reviews.length,
+      reviews,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch reviews",
+      error: error.message,
+    });
+  }
+};
+
 export const getReviews = async (req, res) => {
   try {
-    const reviews = await Review.find({ gym: req.params.gymId }).populate("user", "name");
+    const reviews = await Review.find({ gym: req.params.gymId }).populate(
+      "user",
+      "name"
+    );
     res.status(200).json(reviews);
   } catch (error) {
     res.status(404).json({ message: error.message });
